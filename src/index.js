@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+    constructor(props) {
+        // In JS, you need to explicitly call super
+        // when defining constructors of subclasses
+        super(props);
+        this.state = {
+            value: null,
+        };
+    }
+
   render() {
     return (
         // Note that we're passing a function
@@ -11,9 +20,13 @@ class Square extends React.Component {
         // each button click.
       <button 
         className="square"
-        onClick={() => alert('click')}>
-        {this.props.value}
+        onClick={() => this.setState({value: 'X'})}>
+        {this.state.value}
       </button>
+        // Note that we are calling this.setState.
+        // Whenever modifying the state of a component,
+        // you should call this function so React can
+        // rerender it and its descendants.
     );
   }
 }
