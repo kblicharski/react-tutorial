@@ -5,7 +5,13 @@ import './index.css';
 class Square extends React.Component {
   render() {
     return (
-      <button className="square">
+        // Note that we're passing a function
+        // to onClick. If we didn't, it would
+        // happen immediately instead of on
+        // each button click.
+      <button 
+        className="square"
+        onClick={() => alert('click')}>
         {this.props.value}
       </button>
     );
