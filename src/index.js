@@ -37,53 +37,53 @@ import './index.css';
 // to the button attribute "onClick". The same could have been
 // accomplished using {() => props.onClick()}
 function Square(props) {
-    return (
-        <button
-            className="square"
-            onClick={props.onClick}
-        >
-            {props.value}
-        </button>
-    );
+  return (
+    <button
+      className="square"
+      onClick={ props.onClick }
+    >
+      { props.value }
+    </button>
+  );
 }
-
 
 class Board extends React.Component {
 
-    constructor(props) {
-        // In JS, when subclassing we always have to
-        // explicitly call super.
-        super(props);
-        this.state = {
-            squares: Array(9).fill(null),
-        };
-    }
+  constructor(props) {
+    // In JS, when subclassing we always have to
+    // explicitly call super.
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null)
 
-    // Note that this function is pure, because it enforces
-    // immutability in our state. We copy squares before modifying
-    // it, and then reset the entire container.
-    //
-    // Immutability is important because:
-    //      1. It increases component and application performance.
-    //      2. It lets us maintain a history of changes. With this,
-    //      we can implement things like undo and redo.
-    //      3. We can easily check if something is changed, because
-    //      if it has been changed its reference will be different.
-    //      This is a lot simpler than "dirty checking" by checking
-    //      each key and value in the entire object for changes.
-    //      4. Pure components allow React to easily re-render.
-    handleClick(i) {
-        const squares = this.state.squares.slice();
-        squares[i] = 'X';
-        this.setState({squares: squares});
-    }
+    };
+  }
+
+  // Note that this function is pure, because it enforces
+  // immutability in our state. We copy squares before modifying
+  // it, and then reset the entire container.
+  //
+  // Immutability is important because:
+  //      1. It increases component and application performance.
+  //      2. It lets us maintain a history of changes. With this,
+  //      we can implement things like undo and redo.
+  //      3. We can easily check if something is changed, because
+  //      if it has been changed its reference will be different.
+  //      This is a lot simpler than "dirty checking" by checking
+  //      each key and value in the entire object for changes.
+  //      4. Pure components allow React to easily re-render.
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
 
   renderSquare(i) {
     return (
-        <Square
-            value={this.state.squares[i]}
-            onClick={() => this.handleClick(i)}
-        />
+      <Square
+        value={ this.state.squares[i] }
+        onClick={ () => this.handleClick(i) }
+      />
     );
   }
 
@@ -92,21 +92,21 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className="status">{status}</div>
+        <div className="status">{ status }</div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+          { this.renderSquare(0) }
+          { this.renderSquare(1) }
+          { this.renderSquare(2) }
         </div>
         <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+          { this.renderSquare(3) }
+          { this.renderSquare(4) }
+          { this.renderSquare(5) }
         </div>
         <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          { this.renderSquare(6) }
+          { this.renderSquare(7) }
+          { this.renderSquare(8) }
         </div>
       </div>
     );
@@ -118,11 +118,11 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board/>
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
+          <div>{ /* status */ }</div>
+          <ol>{ /* TODO */ }</ol>
         </div>
       </div>
     );
@@ -132,6 +132,6 @@ class Game extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <Game/>,
   document.getElementById('root')
 );
