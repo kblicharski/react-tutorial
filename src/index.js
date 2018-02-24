@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// Square is an example of a "controlled component".
+// This component type stores no state of its own --
+// it receives values from its parent and notifies its parent
+// when interacted with.
 class Square extends React.Component {
 
   render() {
@@ -26,6 +30,8 @@ class Square extends React.Component {
 
 class Board extends React.Component {
     constructor(props) {
+        // In JS, when subclassing we always have to
+        // explicitly call super.
         super(props);
         this.state = {
             squares: Array(9).fill(null),
@@ -35,6 +41,16 @@ class Board extends React.Component {
     // Note that this function is pure, because it enforces
     // immutability in our state. We copy squares before modifying
     // it, and then reset the entire container.
+    // 
+    // Immutability is important because:
+    //      1. It increases component and application performance.
+    //      2. It lets us maintain a history of changes. With this,
+    //      we can implement things like undo and redo.
+    //      3. We can easily check if something is changed, because
+    //      if it has been changed its reference will be different.
+    //      This is a lot simpler than "dirty checking" by checking
+    //      each key and value in the entire object for changes.
+    //      4. Pure components allow React to easily re-render.
     handleClick(i) {
         const squares = this.state.squares.slice();
         squares[i] = 'X';
